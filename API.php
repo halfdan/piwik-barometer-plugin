@@ -61,7 +61,7 @@ class Piwik_Barometer_API {
         ));
 
         return array(
-            'maxvisits' => $maxvisits,
+            'maxvisits' => (int)$maxvisits,
             'visits' => $visits
         );
     }
