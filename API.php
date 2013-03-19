@@ -54,7 +54,7 @@ class Piwik_Barometer_API {
         $sql = "SELECT COUNT(*)
                 FROM ".Piwik_Common::prefixTable(("log_visit"))."
                 WHERE idsite = ?
-                AND DATE_SUB(NOW(), INTERVAL ? SECOND) < visit_last_action_time";
+                AND DATE_SUB(NOW(), INTERVAL ? MINUTE) < visit_last_action_time";
 
         $visits = Piwik_FetchOne($sql, array(
             $idSite, $lastMinutes
