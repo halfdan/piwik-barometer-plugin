@@ -12,4 +12,5 @@
 $translations = array(
     'Barometer_PluginDescription' => 'Plugin that adds a widget to visualize the visits in the last N minutes compared to a 30 day timespan.',
     'Barometer_VisitorBarometer' => 'Visitor Barometer',
+    'Barometer_VisitsInLastNMinutes' => 'Visits in last 30 minutes'
 );
