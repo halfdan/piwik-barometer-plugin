@@ -1,4 +1,4 @@
-# Piwik LogViewer Plugin
+# Piwik Barometer Plugin
 
 This is a plugin for the Open Source Web Analytics platform Piwik. If enabled, it will add a new Widget that you can add to your dashboard.
 
