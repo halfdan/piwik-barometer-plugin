@@ -3,14 +3,16 @@
 {literal}
 <script type="text/javascript" charset="utf-8">
 function drawVisitorGaugePlot(current, max) {
+    var intervals = [max*0.25, max*0.75, max];
     $.jqplot('visitorGauge',[[current]],{
         seriesDefaults: {
             renderer: $.jqplot.MeterGaugeRenderer,
             rendererOptions: {
                 label: 'Visits in last 30 minutes',
                 labelPosition: 'bottom',
-                labelHeightAdjust: -5,
                 intervalOuterRadius: 85,
+                intervals: intervals,
+                intervalColors:['#cc6666', '#E7E658', '#66cc66'],
                 min: 0,
                 max: max
             }
