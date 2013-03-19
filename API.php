@@ -42,9 +42,9 @@ class Piwik_Barometer_API {
                 FROM (
                   SELECT    COUNT(idvisit) as concurrent
                   FROM      ". Piwik_Common::prefixTable("log_visit")."
-                  WHERE     DATE_SUB(NOW(), INTERVAL ? DAY) < visit_first_action_time
+                  WHERE     DATE_SUB(NOW(), INTERVAL ? DAY) < visit_last_action_time
                   AND       idsite = ?
-                  GROUP BY  round(UNIX_TIMESTAMP(visit_first_action_time) / ?)
+                  GROUP BY  round(UNIX_TIMESTAMP(visit_last_action_time) / ?)
         ) g";
 
         $maxvisits = Piwik_FetchOne($sql, array(
