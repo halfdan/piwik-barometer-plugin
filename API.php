@@ -41,7 +41,7 @@ class Piwik_Barometer_API {
         $sql = "SELECT MAX(g.concurrent) AS maxvisit
                 FROM (
                   SELECT    COUNT(idvisit) as concurrent
-                  FROM      ". Piwik_Common::prefixTable("log_visit")."
+                  FROM      ". Piwik_Common::prefixTable("log_visit") . "
                   WHERE     DATE_SUB(NOW(), INTERVAL ? DAY) < visit_last_action_time
                   AND       idsite = ?
                   GROUP BY  round(UNIX_TIMESTAMP(visit_last_action_time) / ?)
@@ -52,7 +52,7 @@ class Piwik_Barometer_API {
         ));
 
         $sql = "SELECT COUNT(*)
-                FROM ".Piwik_Common::prefixTable(("log_visit"))."
+                FROM " . Piwik_Common::prefixTable("log_visit") . "
                 WHERE idsite = ?
                 AND DATE_SUB(NOW(), INTERVAL ? MINUTE) < visit_last_action_time";
 
@@ -62,7 +62,7 @@ class Piwik_Barometer_API {
 
         return array(
             'maxvisits' => (int)$maxvisits,
-            'visits' => $visits
+            'visits' => (int)$visits
         );
     }
 
