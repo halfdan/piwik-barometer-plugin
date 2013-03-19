@@ -18,7 +18,7 @@
              */
             var settings = {
                 // minimal time in microseconds to wait between updates
-                interval: 3000,
+                interval: 5000,
                 // maximum time to wait between requests
                 maxInterval: 300000,
                 // url params to use for data request

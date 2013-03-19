@@ -52,7 +52,8 @@ class Piwik_Barometer extends Piwik_Plugin
      */
     public function addWidgets()
     {
-        Piwik_AddWidget( 'Live!', 'Barometer_VisitorBarometer', 'Barometer', 'getGauge');
+        Piwik_AddWidget( 'Live!', 'Barometer_VisitorBarometer', 'Barometer', 'getVisitorGauge');
+        Piwik_AddWidget( 'Live!', 'Barometer_VisitTimeBarometer', 'Barometer', 'getVisitTimeGauge');
     }
 
     /**

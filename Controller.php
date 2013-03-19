@@ -14,15 +14,18 @@ class Piwik_Barometer_Controller extends Piwik_Controller
     /**
      *
      */
-    public function getGauge()
+    public function getVisitorGauge()
     {
-        $view = Piwik_View::factory('gauge_widget');
+        $view = Piwik_View::factory('visitor_gauge_widget');
+        echo $view->render();
+    }
 
-        $idSite = Piwik_Common::getRequestVar('idSite', '', 'int');
-        $data = Piwik_Barometer_API::getInstance()->getVisitorCounter($idSite, 30, 30);
-        $view->currentVisits = $data['visits'];
-        $view->maxVisits = $data['maxvisits'];
-
+    /**
+     *
+     */
+    public function getVisitTimeGauge()
+    {
+        $view = Piwik_View::factory('visit_time_gauge_widget');
         echo $view->render();
     }
 

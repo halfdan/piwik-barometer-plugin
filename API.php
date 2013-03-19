@@ -66,4 +66,37 @@ class Piwik_Barometer_API {
         );
     }
 
+    public function getAverageVisitTimeData($idSite, $lastMinutes = 30, $lastDays = 30)
+    {
+        Piwik::checkUserHasViewAccess($idSite);
+        $lastMinutes = (int)$lastMinutes;
+        $lastDays = (int)$lastDays;
+
+        $sql = "SELECT MAX(g.average_time) AS maxtime
+                FROM (
+                  SELECT    AVG(visit_total_time) as average_time
+                  FROM      ". Piwik_Common::prefixTable("log_visit") . "
+                  WHERE     DATE_SUB(NOW(), INTERVAL ? DAY) < visit_last_action_time
+                  AND       idsite = ?
+                  GROUP BY  round(UNIX_TIMESTAMP(visit_last_action_time) / ?)
+        ) g";
+
+        $maxtime = Piwik_FetchOne($sql, array(
+                $lastDays, $idSite, $lastMinutes * 60
+            ));
+
+        $sql = "SELECT AVG(visit_total_time)
+                FROM " . Piwik_Common::prefixTable("log_visit") . "
+                WHERE idsite = ?
+                AND DATE_SUB(NOW(), INTERVAL ? MINUTE) < visit_last_action_time";
+
+        $average_time = Piwik_FetchOne($sql, array(
+                $idSite, $lastMinutes
+        ));
+
+        return array(
+            'maxtime' => (int)$maxtime,
+            'average_time' => (int)$average_time
+        );
+    }
 }
