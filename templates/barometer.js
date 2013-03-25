@@ -10,8 +10,8 @@
  */
 
 (function($) {
-    $.extend({
-        barometerWidget: new function() {
+    $.fn.extend({
+        barometerWidget: function(userSettings) {
 
             /**
              * Default settings for widgetPreview
@@ -56,14 +56,14 @@
                     }
                 });
                 ajaxRequest.send(false);
-            };
+            }
 
             function drawBarometerPlot(current, max) {
                 var intervals = [max*0.25, max*0.75, max];
                 if(barometerPlot) {
                     barometerPlot.destroy();
                 }
-                barometerPlot = $.jqplot(barometerWidget[0].id,[[current]],{
+                barometerPlot = $.jqplot(barometerWidget.id,[[current]],{
                     seriesDefaults: {
                         renderer: $.jqplot.MeterGaugeRenderer,
                         rendererOptions: {
@@ -77,15 +77,18 @@
                         }
                     }
                 });
-            };
+            }
 
             /**
-             * Constructor
+             * Triggers an update for the widget
              *
-             * @param userSettings Settings to be used
              * @return void
              */
-            this.construct = function(userSettings) {
+            this.update = function() {
+                update();
+            };
+
+            return this.each(function() {
                 settings = jQuery.extend(settings, userSettings);
 
                 if(!settings.dataUrlParams) {
@@ -106,23 +109,7 @@
 
                 // start update
                 update();
-            };
-
-            /**
-             * Triggers an update for the widget
-             *
-             * @return void
-             */
-            this.update = function() {
-                update();
-            };
+            });
         }
-    });
-
-    /**
-     * Makes barometerWidget available with $().barometerWidget()
-     */
-    $.fn.extend({
-        barometerWidget: $.barometerWidget.construct
     });
 })(jQuery);
