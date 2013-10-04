@@ -8,12 +8,6 @@ The widgets will show a Visitor Barometer and a Visit Time Barometer that auto-r
 
 The idea for this plugin came from [@muesli](http://github.com/muesli) who suggested it on #piwik in IRC.
 
-## Screenshots
-
-![Widget Screenshot](https://s3-eu-west-1.amazonaws.com/geekproject/screenshots/piwik-barometer-01.png)
-
-![Widget Screenshot](https://s3-eu-west-1.amazonaws.com/geekproject/screenshots/piwik-barometer-02.png)
-
 ## Documentation
 
 1. Clone the plugin into the plugins directory of your Piwik installation.
