@@ -47,7 +47,7 @@ class Barometer extends \Piwik\Plugin
      */
     public function getJavaScriptFiles(&$jsFiles)
     {
-        $jsFiles[] = "plugins/Barometer/templates/barometer.js";
-        $jsFiles[] = "plugins/Barometer/templates/jqplot.meterGaugeRenderer.js";
+        $jsFiles[] = "plugins/Barometer/javascripts/jqplot.meterGaugeRenderer.js";
+        $jsFiles[] = "plugins/Barometer/javascripts/barometer.js";
     }
 }
