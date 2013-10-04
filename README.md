@@ -1,5 +1,7 @@
 # Piwik Barometer Plugin
 
+## Description
+
 This is a plugin for the Open Source Web Analytics platform Piwik. If enabled, it will add a two new widgets that you can add to your dashboard.
 
 The widgets will show a Visitor Barometer and a Visit Time Barometer that auto-refresh every 5 seconds. It shows the number of visitors or visit time in a N minute period compared to the maximum number of visitors/average visit time in any N minute period of the last 30 days.
