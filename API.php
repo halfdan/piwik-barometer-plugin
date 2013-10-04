@@ -8,13 +8,15 @@
  * @category Piwik_Plugins
  * @package Piwik_Barometer
  */
+namespace Piwik\Plugins\Barometer;
 
-class Piwik_Barometer_API {
+class API {
     static private $instance = null;
+
     /**
-     * @return Piwik_Barometer_API
+     * @return API
      */
-    static public function getInstance()
+    public static function getInstance()
     {
         if (self::$instance == null)
         {
@@ -34,29 +36,29 @@ class Piwik_Barometer_API {
      */
     public function getVisitorCounter($idSite, $lastMinutes = 30, $lastDays = 30)
     {
-        Piwik::checkUserHasViewAccess($idSite);
+        \Piwik::checkUserHasViewAccess($idSite);
         $lastMinutes = (int)$lastMinutes;
         $lastDays = (int)$lastDays;
 
         $sql = "SELECT MAX(g.concurrent) AS maxvisit
                 FROM (
                   SELECT    COUNT(idvisit) as concurrent
-                  FROM      ". Piwik_Common::prefixTable("log_visit") . "
+                  FROM      ". \Piwik\Common::prefixTable("log_visit") . "
                   WHERE     DATE_SUB(NOW(), INTERVAL ? DAY) < visit_last_action_time
                   AND       idsite = ?
                   GROUP BY  round(UNIX_TIMESTAMP(visit_last_action_time) / ?)
         ) g";
 
-        $maxvisits = Piwik_FetchOne($sql, array(
+        $maxvisits = \Piwik\Db::fetchOne($sql, array(
             $lastDays, $idSite, $lastMinutes * 60
         ));
 
         $sql = "SELECT COUNT(*)
-                FROM " . Piwik_Common::prefixTable("log_visit") . "
+                FROM " . \Piwik\Common::prefixTable("log_visit") . "
                 WHERE idsite = ?
                 AND DATE_SUB(NOW(), INTERVAL ? MINUTE) < visit_last_action_time";
 
-        $visits = Piwik_FetchOne($sql, array(
+        $visits = \Piwik\Db::fetchOne($sql, array(
             $idSite, $lastMinutes
         ));
 
@@ -68,29 +70,29 @@ class Piwik_Barometer_API {
 
     public function getAverageVisitTimeData($idSite, $lastMinutes = 30, $lastDays = 30)
     {
-        Piwik::checkUserHasViewAccess($idSite);
+        \Piwik::checkUserHasViewAccess($idSite);
         $lastMinutes = (int)$lastMinutes;
         $lastDays = (int)$lastDays;
 
         $sql = "SELECT MAX(g.average_time) AS maxtime
                 FROM (
                   SELECT    AVG(visit_total_time) as average_time
-                  FROM      ". Piwik_Common::prefixTable("log_visit") . "
+                  FROM      ". \Piwik\Common::prefixTable("log_visit") . "
                   WHERE     DATE_SUB(NOW(), INTERVAL ? DAY) < visit_last_action_time
                   AND       idsite = ?
                   GROUP BY  round(UNIX_TIMESTAMP(visit_last_action_time) / ?)
         ) g";
 
-        $maxtime = Piwik_FetchOne($sql, array(
+        $maxtime = \Piwik\Db::fetchOne($sql, array(
                 $lastDays, $idSite, $lastMinutes * 60
             ));
 
         $sql = "SELECT AVG(visit_total_time)
-                FROM " . Piwik_Common::prefixTable("log_visit") . "
+                FROM " . \Piwik\Common::prefixTable("log_visit") . "
                 WHERE idsite = ?
                 AND DATE_SUB(NOW(), INTERVAL ? MINUTE) < visit_last_action_time";
 
-        $average_time = Piwik_FetchOne($sql, array(
+        $average_time = \Piwik\Db::fetchOne($sql, array(
                 $idSite, $lastMinutes
         ));
 

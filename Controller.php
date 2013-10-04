@@ -8,15 +8,16 @@
  * @category Piwik_Plugins
  * @package Piwik_Barometer
  */
+namespace Piwik\Plugins\Barometer;
 
-class Piwik_Barometer_Controller extends Piwik_Controller
+class Controller extends \Piwik\Controller
 {
     /**
      *
      */
     public function getVisitorGauge()
     {
-        $view = Piwik_View::factory('visitor_gauge_widget');
+        $view = new \Piwik\View('@Barometer/visitor_gauge_widget');
         echo $view->render();
     }
 
@@ -25,7 +26,7 @@ class Piwik_Barometer_Controller extends Piwik_Controller
      */
     public function getVisitTimeGauge()
     {
-        $view = Piwik_View::factory('visit_time_gauge_widget');
+        $view = new \Piwik\View('@Barometer/visit_time_gauge_widget');
         echo $view->render();
     }
 
