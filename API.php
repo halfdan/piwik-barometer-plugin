@@ -11,7 +11,7 @@
 namespace Piwik\Plugins\Barometer;
 
 class API {
-    static private $instance = null;
+    private static $instance = null;
 
     /**
      * @return API
@@ -36,7 +36,7 @@ class API {
      */
     public function getVisitorCounter($idSite, $lastMinutes = 30, $lastDays = 30)
     {
-        \Piwik::checkUserHasViewAccess($idSite);
+        \Piwik\Piwik::checkUserHasViewAccess($idSite);
         $lastMinutes = (int)$lastMinutes;
         $lastDays = (int)$lastDays;
 
@@ -70,7 +70,7 @@ class API {
 
     public function getAverageVisitTimeData($idSite, $lastMinutes = 30, $lastDays = 30)
     {
-        \Piwik::checkUserHasViewAccess($idSite);
+        \Piwik\Piwik::checkUserHasViewAccess($idSite);
         $lastMinutes = (int)$lastMinutes;
         $lastDays = (int)$lastDays;
 
