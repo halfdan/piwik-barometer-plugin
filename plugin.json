@@ -5,14 +5,14 @@
     "keywords": ["barometer", "live"],
     "homepage": "http://github.com/halfdan/piwik-barometer-plugin",
     "license": "GPL-3.0+",
+    "donate": {
+        "flattr": "https://flattr.com/profile/halfdan"
+    },
     "authors": [
         {
             "name": "Fabian Becker",
             "email": "halfdan@xnorfz.de",
             "homepage": "http://geekproject.eu"
         }
-    ],
-    "require": {
-        "piwik": ">=1.10.0"
-    }
+    ]
 }
