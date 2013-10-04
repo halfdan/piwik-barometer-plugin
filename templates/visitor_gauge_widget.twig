@@ -1,6 +1,5 @@
 <div id="visitorGauge"></div>
 
-{literal}
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
     $('#visitorGauge').barometerWidget({
@@ -12,10 +11,9 @@ $(document).ready(function() {
             lastMinutes: 30,
             lastDays: 30
         },
-        label: '{/literal}{"Barometer_VisitsInLastNMinutes"|translate}{literal}',
+        label: '{{ "Barometer_VisitsInLastNMinutes"|translate }}',
         valueName: 'visits',
         maxValueName: 'maxvisits'
     });
 });
 </script>
-{/literal}
