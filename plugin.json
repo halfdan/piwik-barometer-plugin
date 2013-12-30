@@ -1,7 +1,7 @@
 {
     "name": "Barometer",
     "description": "Live Plugin that shows the current number of visitors on the page.",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "keywords": ["barometer", "live"],
     "homepage": "http://github.com/halfdan/piwik-barometer-plugin",
     "license": "GPL-3.0+",
