@@ -10,20 +10,7 @@
  */
 namespace Piwik\Plugins\Barometer;
 
-class API {
-    private static $instance = null;
-
-    /**
-     * @return API
-     */
-    public static function getInstance()
-    {
-        if (self::$instance == null)
-        {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
+class API extends \Piwik\Plugin\API {
 
     /**
      * Retrieves visit count from lastMinutes and peak visit count from lastDays
