@@ -29,7 +29,8 @@ class API extends \Piwik\Plugin\API {
         $lastMinutes = (int)$lastMinutes;
         $lastDays = (int)$lastDays;
 
-        $refNow = Date::factory('now');
+        /* Time is UTC in database. */
+		$refNow = Date::factory('now');
         $timeLimit = $refNow->subDay($lastDays)->toString('Y-m-d H:i:s');
         $sql = "SELECT MAX(g.concurrent) AS maxvisit
                 FROM (
@@ -67,6 +68,7 @@ class API extends \Piwik\Plugin\API {
         $lastMinutes = (int)$lastMinutes;
         $lastDays = (int)$lastDays;
 
+        /* Time is UTC in database. */
         $refNow = Date::factory('now');
         $timeLimit = $refNow->subDay($lastDays)->toString('Y-m-d H:i:s');
         $sql = "SELECT MAX(g.average_time) AS maxtime
